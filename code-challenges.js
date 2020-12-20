@@ -9,35 +9,41 @@ var people = [
 ]
 // Expected output example: "Ford Prefect is a hitchhiker." "Zaphod Beeblebrox is a president of the galaxy." "Arthus Dent is a radio employee."
 
-// for (let i = 0, len = people.length; i <= len; i++) {
-// 	console.log(people)
-// 	console.log(people[i].name)
-// 	// console.log(people[i].occupation)
-// 	// console.log(`${people[i].name} is a ${people[i].occupation}`)
-// }
+const sentenceMaker = (arr) => {
+	let cappedNamesArray = []
+	let occupationArray = []
+	let resultArray = []
 
-// // Create a function that takes an array of objects
-// const sentenceMaker = (arr) => {
-// 	// loop people array and edit name prop to cap names
-// 	let capName = arr.map((item) => {
-// 		return item.name
-// 			.toLowerCase()
-// 			.split(' ')
-// 			.map((word) => word.charAt(0).toUpperCase() + word.substring(1))
-// 			.join(' ')
-// 	})
+	// isolate the name key and cap first letter of each name, then save to it's own array
+	for (let i = 0; i < arr.length; i++) {
+		//let names = arr[i].name
+		let cappedNames = arr[i].name
+			.toLowerCase()
+			.split(' ')
+			.map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+			.join(' ')
+		cappedNamesArray.push(cappedNames)
+	}
 
-// 	let occupation = arr.map((item) => {
-// 		return item.occupation
-// 	})
+	// isolate the occupation keys and save to their own array
+	for (let i = 0; i < arr.length; i++) {
+		// let occupations = arr[i].occupation
+		// occupationArray.push(occupations)
+		occupationArray.push(arr[i].occupation)
+	}
 
-// 	// return a sentence for each instance with each person’s name capitalized
-// 	return `${capName} is a ${occupation}.`
-// }
+	// loop and add interpolated string combination to it's own array
+	for (let i = 0; i < arr.length; i++) {
+		resultArray.push(`${cappedNamesArray[i]} is a ${occupationArray[i]}. `)
+	}
+
+	// return the array as strings
+	return resultArray.join(' ')
+}
 
 // call the function
 console.log('Problem #1')
-// console.log(sentenceMaker(people))
+console.log(sentenceMaker(people))
 
 // --------------------2) Create a function that takes in a mixed data array and returns an array of only the REMAINDER of the numbers when divided by 3.
 
@@ -86,59 +92,40 @@ console.log(noDuplicateArray(testingArray3, testingArray4))
 // **************** PRACTICE ITERATING ARRAY OF OBJECTS ****************
 //console.log('NOT PART OF ASSESSMENT')
 // Nested for Loops
-let twoD = [
-	[1, 2, 3, 4, 5, 6, 7],
-	[8, 10, 5, 7, 3, 22, 6, 42],
-	[123, 54, 12, 11, 9, 15],
-]
+// let twoD = [
+// 	[1, 2, 3, 4, 5, 6, 7],
+// 	[8, 10, 5, 7, 3, 22, 6, 42],
+// 	[123, 54, 12, 11, 9, 15],
+// ]
 
-let rows = twoD.length
-for (let i = 0; i < rows; i++) {
-	let items = twoD[i].length // loops each array
-	//console.log(i, items)
-	for (let n = 0; n < items; n++) {
-		// loops each item within the i array
-		//console.log(twoD[i][n])
-	}
-}
+// let rows = twoD.length
+// for (let i = 0; i < rows; i++) {
+// 	let items = twoD[i].length // loops each array
+// 	//console.log(i, items)
+// 	for (let n = 0; n < items; n++) {
+// 		// loops each item within the i array
+// 		//console.log(twoD[i][n])
+// 	}
+// }
 
-let bigHero = {
-	characters: [
-		{ name: 'Hiro', voice: 'Ryan Potter' },
-		{ name: 'Baymax', voice: 'Scott Adsit' },
-		{ name: 'Go Go Tamago', voice: 'Jamie Chung' },
-		{ name: 'Fred', voice: 'T.J. Miller' },
-	],
-}
+// let bigHero = {
+// 	characters: [
+// 		{ name: 'Hiro', voice: 'Ryan Potter' },
+// 		{ name: 'Baymax', voice: 'Scott Adsit' },
+// 		{ name: 'Go Go Tamago', voice: 'Jamie Chung' },
+// 		{ name: 'Fred', voice: 'T.J. Miller' },
+// 	],
+// }
 
-// extract characters array from containing object
-let chars = bigHero.characters // or  bigHero['characters']
-// loop through array of objects
-for (let i = 0, len = chars.length; i < len; i++) {
-	console.log(chars[i]) // returns each object
-	console.log(chars[i].name) // returns name in current object
-	console.log(chars[i].voice) // returns voice in current object
-	for (let prop in chars[i]) {
-		// prop is a variable for the 'key' - have to use bracket notation
-		console.log(prop, chars[i][prop])
-	}
-}
-
-// // Create a function that takes an array of objects
-// const sentenceMaker = (arr) => {
-// 	// loop people array and edit name prop to cap names
-// 	let capName = arr.map((item) => {
-// 		return item.name
-// 			.toLowerCase()
-// 			.split(' ')
-// 			.map((word) => word.charAt(0).toUpperCase() + word.substring(1))
-// 			.join(' ')
-// 	})
-
-// 	let occupation = arr.map((item) => {
-// 		return item.occupation
-// 	})
-
-// 	// return a sentence for each instance with each person’s name capitalized
-// 	return `${capName} is a ${occupation}.`
+// // extract characters array from containing object
+// let chars = bigHero.characters // or  bigHero['characters']
+// // loop through array of objects
+// for (let i = 0, len = chars.length; i < len; i++) {
+// 	console.log(chars[i]) // returns each object
+// 	console.log(chars[i].name) // returns name in current object
+// 	console.log(chars[i].voice) // returns voice in current object
+// 	for (let prop in chars[i]) {
+// 		// prop is a variable for the 'key' - have to use bracket notation
+// 		console.log(prop, chars[i][prop])
+// 	}
 // }
